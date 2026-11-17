@@ -1,0 +1,16 @@
+{
+  "format": 1,
+  "id": "pogoda",
+  "version": 1,
+  "language": "pl",
+  "name": "Pogoda",
+  "description": "Darek mówi, jaka jest pogoda w twoim mieście. Dane pogodowe: Open-Meteo.com (CC BY 4.0).",
+  "author": "MaksForge",
+  "profanity": false,
+  "permissions": ["internet"],
+  "addresses": ["https://api.open-meteo.com/v1/forecast", "https://geocoding-api.open-meteo.com/v1/search"],
+  "sends": ["chosen_city"],
+  "commands": [
+    { "id": "jaka-pogoda", "phrase": "jaka pogoda", "action": "weather", "decoys": ["jaka przygoda"] }
+  ]
+}
