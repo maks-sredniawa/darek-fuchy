@@ -1,0 +1,33 @@
+name: Check fuchy
+description: Runs the unit tests, then every install check and the vocabulary check against Darek's model.
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+      with:
+        python-version: '3.13'
+
+    - shell: bash
+      run: python3 -m unittest discover -s scripts -v
+
+    - id: model
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      with:
+        path: ${{ runner.temp }}/vosk
+        key: vosk-model-small-pl-0.22-c4cd16498ea544f4
+
+    - if: steps.model.outputs.cache-hit != 'true'
+      shell: bash
+      working-directory: ${{ runner.temp }}
+      run: |
+        curl -fsSL --retry 3 -o model.zip https://alphacephei.com/vosk/models/vosk-model-small-pl-0.22.zip
+        echo "c4cd16498ea544f446f9e9a55cbd602b71cfe5a2b6f2b0834d81e1b6fce15f0d  model.zip" | sha256sum -c -
+        mkdir -p vosk
+        unzip -q model.zip -d vosk
+        rm model.zip
+
+    - shell: bash
+      run: python3 -m pip install --disable-pip-version-check vosk==0.3.45
+
+    - shell: bash
+      run: python3 scripts/check.py --model "$RUNNER_TEMP/vosk/vosk-model-small-pl-0.22"
