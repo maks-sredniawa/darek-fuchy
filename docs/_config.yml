@@ -1,0 +1,8 @@
+remote_theme: maks-sredniawa/pages-theme
+plugins:
+  - jekyll-remote-theme
+lang: pl
+title: Fuchy Darka
+description: Fuchy dla Darka, polskiego asystenta głosowego, sprawdzone i podpisane przez MaksForge.
+maksforge:
+  icon: /assets/icons/darek.webp
