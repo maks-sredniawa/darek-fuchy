@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "fuchy": [
+    {
+      "id": "pogoda",
+      "version": 1,
+      "name": "Pogoda",
+      "description": "Darek mówi, jaka jest pogoda w twoim mieście. Dane pogodowe: Open-Meteo.com (CC BY 4.0).",
+      "author": "MaksForge",
+      "profanity": false,
+      "actions": [
+        "weather"
+      ],
+      "url": "https://maksforge.com/darek-fuchy/fuchy/pogoda.darek"
+    }
+  ]
+}
